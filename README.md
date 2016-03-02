@@ -1,9 +1,9 @@
 Simple Custom Range Slider
 ==========================
 
-> The Simplest JavaScript Custom Range Slider Ever!
+> The simplest JavaScript custom range slider ever!
 
-[View Demo](https://rawgithub.com/tovic/simple-custom-range-slider/master/index.html)
+[View Demo](https://rawgit.com/tovic/simple-custom-range-slider/master/index.html)
 
 Basic Usage
 -----------
@@ -82,3 +82,4 @@ Playground
 ----------
 
  * http://jsbin.com/qebisaso/1/edit
+ * http://codepen.io/tovic/pen/Nxpoja
