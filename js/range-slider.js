@@ -37,7 +37,10 @@ function rangeSlider(elem, config) {
         range = document.createElement('div'),
         dragger = document.createElement('span'),
         down = false,
-        rangeWidth, rangeOffset, draggerWidth, cachePosition;
+        rangeWidth = 0,
+        rangeOffset = 0,
+        draggerWidth = 0,
+        cachePosition = 0;
 
     var defaults = {
         value: 0, // set default value on initiation from `0` to `100` (percentage based)
@@ -49,6 +52,17 @@ function rangeSlider(elem, config) {
 
     for (var i in defaults) {
         if (typeof config[i] == "undefined") config[i] = defaults[i];
+    }
+
+    function getPos(el) {
+        var left = 0, top = 0;
+        if (el.offsetParent) {
+            do {
+                left += el.offsetLeft;
+                top += el.offsetTop;
+            } while (el = el.offsetParent);
+        }
+        return [left, top];
     }
 
     function addEventTo(el, ev, fn) {
@@ -70,7 +84,7 @@ function rangeSlider(elem, config) {
     addEventTo(range, "mousedown", function(e) {
         html.className = (html.className + ' no-select').replace(/^ +/, "");
         rangeWidth = range[!isVertical ? 'offsetWidth' : 'offsetHeight'];
-        rangeOffset = range[!isVertical ? 'offsetLeft' : 'offsetTop'];
+        rangeOffset = getPos(range)[!isVertical ? 0 : 1];
         draggerWidth = dragger[!isVertical ? 'offsetWidth' : 'offsetHeight'];
         down = true;
         updateDragger(e);
