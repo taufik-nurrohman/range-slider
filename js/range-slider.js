@@ -61,6 +61,9 @@ function rangeSlider(elem, config) {
                 left += el.offsetLeft;
                 top += el.offsetTop;
             } while (el = el.offsetParent);
+        } else {
+            left = el.offsetLeft;
+            top = el.offsetTop;
         }
         return [left, top];
     }
@@ -77,7 +80,7 @@ function rangeSlider(elem, config) {
 
     var isVertical = config.vertical;
 
-    elem.className = (elem.className + ' range-slider ' + (isVertical ? 'range-slider-vertical' : 'range-slider-horizontal')).replace(/^ +/, "");
+    elem.className = (elem.className + ' range-slider range-slider-' + (isVertical ? 'vertical' : 'horizontal')).replace(/^ +/, "");
     range.className = ('range-slider-track ' + config.rangeClass).replace(/ +$/, "");
     dragger.className = ('dragger ' + config.draggerClass).replace(/ +$/, "");
 
