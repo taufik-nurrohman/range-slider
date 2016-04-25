@@ -78,6 +78,11 @@ rangeSlider(document.getElementById('range-slider-1'), {
 });
 ```
 
+Folks
+-----
+
+ - Added support for touch/mobile devices by @beard86 &rarr; [link](https://github.com/beard86/simple-custom-range-slider)
+
 Playground
 ----------
 
