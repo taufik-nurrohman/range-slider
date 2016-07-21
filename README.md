@@ -33,7 +33,6 @@ RS(document.getElementById('range-slider-1'), function(value, target, event) {
 ### Advance
 
 ~~~ .javascript
-// horizontal slider
 RS(document.getElementById('range-slider-1'), {
     value: 1, // initial value
     vertical: false, // vertical or horizontal slider?
