@@ -30,6 +30,8 @@
 // `RS(target, {})`
 function RS(target, event, vertical) {
 
+    event = event || {};
+
     var win = window,
         doc = document,
         range = doc.createElement('div'),

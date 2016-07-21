@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Range Slider</title>
+    <link href="range-slider.min.css" rel="stylesheet">
+    <style>
+    html,
+    body {height:200%}
+    p {
+      position:static;
+      width:50%;
+    }
+    p:after {content:"Static"}
+    p + p {
+      position:relative;
+      top:50px;
+      left:100px;
+      width:50%;
+    }
+    p + p:after {content:"Relative"}
+    p + p + p {
+      position:absolute;
+      top:200px;
+      left:10px;
+    }
+    p + p + p:after {content:"Absolute"}
+    p + p + p + p {
+      position:fixed;
+      top:200px;
+      left:10px;
+    }
+    p + p + p + p:after {content:"Fixed"}
+    </style>
+  </head>
+  <body>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <script src="range-slider.min.js"></script>
+    <script>
+    var p = document.getElementsByTagName('p');
+    RS(p[0]);
+    RS(p[1]);
+    RS(p[2]);
+    RS(p[3]);
+    </script>
+  </body>
+</html>
