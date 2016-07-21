@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Range Slider</title>
+    <link href="range-slider.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <p></p>
+    <p></p>
+    <script src="range-slider.min.js"></script>
+    <script>
+    var p = document.getElementsByTagName('p');
+    RS(p[0], function(value) {
+        p[1].innerHTML = '<strong>' + value + '%</strong>';
+    });
+    </script>
+  </body>
+</html>

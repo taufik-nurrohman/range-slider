@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Range Slider</title>
+    <link href="range-slider.min.css" rel="stylesheet">
+    <style>
+    .range-slider.red .range-slider-track:before,.range-slider.red .dragger {background-color:red}
+    .range-slider.green .range-slider-track:before,.range-slider.green .dragger {background-color:green}
+    .range-slider.blue .range-slider-track:before,.range-slider.blue .dragger {background-color:blue}
+    </style>
+  </head>
+  <body>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+  <script src="range-slider.min.js"></script>
+  <script>
+  var p = document.getElementsByTagName('p');
+  RS(p[0], {
+      create: function(value, target) {
+          target.className += ' red';
+      },
+      drag: function(value, target) {
+          p[3].innerHTML = '<strong>' + value + '%</strong>';
+      }
+  });
+  RS(p[1], {
+      create: function(value, target) {
+          target.className += ' green';
+      },
+      drag: function(value, target) {
+          p[3].innerHTML = '<strong>' + value + '%</strong>';
+      }
+  });
+  RS(p[2], {
+      create: function(value, target) {
+          target.className += ' blue';
+      },
+      drag: function(value, target) {
+          p[3].innerHTML = '<strong>' + value + '%</strong>';
+      }
+  });
+  </script>
+  </body>
+</html>

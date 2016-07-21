@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Range Slider</title>
+    <link href="range-slider.min.css" rel="stylesheet">
+    <style>.range-slider input {display:none}</style>
+  </head>
+  <body>
+    <p><input type="range" min="0" max="100" step="1" value="20"></p>
+    <p><button onclick="alert(document.getElementsByTagName('input')[0].value);">Show the Hidden Native HTML5 Range Slider Value</button></p>
+    <script src="range-slider.min.js"></script>
+    <script>
+    var p = document.getElementsByTagName('p'),
+        range = document.getElementsByTagName('input')[0];
+    RS(p[0], {
+        value: range.value,
+        drag: function(value) {
+            range.value = value;
+        }
+    });
+    </script>
+  </body>
+</html>

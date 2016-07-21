@@ -45,7 +45,6 @@
     <div class="test-result" id="test-result">
       <span>0%</span>
       <span>0%</span>
-      <span>0</span>
     </div>
 
     <h3>Horizontal Slider</h3>
@@ -53,9 +52,6 @@
 
     <h3>Vertical Slider</h3>
     <div id="range-slider-2"></div>
-
-    <h3>Min = 2, Max = 40 (in pixels)</h3>
-    <div id="range-slider-3"></div>
 
     <script src="range-slider.min.js"></script>
     <script>
@@ -69,25 +65,10 @@
 
     // vertical range slider
     RS(document.getElementById('range-slider-2'), {
-        value: 20,
+        value: 20, // initial value
         vertical: true,
         drag: function(v) {
             testResult[1].innerHTML = v + '%';
-        }
-    });
-
-    // creating `min` and `max` value in range slider
-    var min = 2, max = 40;
-    function pixelToPercent(pixel) {
-        return ((pixel - min) / (max - min)) * 100;
-    }
-    function percentToPixel(percent) {
-        return ((percent / 100) * (max - min)) + min;
-    }
-    RS(document.getElementById('range-slider-3'), {
-        value: pixelToPercent(10),
-        drag: function(v) {
-            testResult[2].innerHTML = Math.round(percentToPixel(v));
         }
     });
 

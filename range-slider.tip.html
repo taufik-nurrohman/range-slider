@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Range Slider</title>
+    <link href="range-slider.min.css" rel="stylesheet">
+    <style>
+    .range-slider {
+      margin-right:1.5em;
+      margin-left:1.5em;
+    }
+    .range-slider .dragger span {
+      position:absolute;
+      top:100%;
+      right:0;
+      left:50%;
+      width:3em;
+      height:2em;
+      margin:.5em 0 0 -1.5em;
+      background-color:black;
+      border-color:black;
+      color:white;
+      text-align:center;
+      line-height:2em;
+      border-radius:3px;
+      display:none;
+    }
+    .range-slider .dragger span:before {
+      content:"";
+      display:block;
+      border:.25em solid transparent;
+      border-bottom-color:inherit;
+      position:absolute;
+      bottom:100%;
+      left:50%;
+      margin-left:-.25em;
+    }
+    </style>
+  </head>
+  <body>
+    <p></p>
+    <script src="range-slider.min.js"></script>
+    <script>
+    var p = document.getElementsByTagName('p'),
+        tip = document.createElement('span');
+    RS(p[0], {
+        create: function(value, target) {
+            target.firstChild.firstChild.appendChild(tip); // append tooltip to the trigger element
+        },
+        start: function() {
+            tip.style.display = 'block';
+        },
+        drag: function(value, target) {
+            tip.innerHTML = value + '%';
+        },
+        stop: function() {
+            tip.style.display = 'none';
+        }
+    });
+    </script>
+  </body>
+</html>

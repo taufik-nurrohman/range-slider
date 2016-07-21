@@ -47,50 +47,15 @@ RS(document.getElementById('range-slider-1'), {
 Examples
 --------
 
-Showing the range slider value into a particular area:
-
-~~~ .javascript
-RS(document.getElementById('range-slider-1'), function(value) {
-    document.getElementById('result-area').innerHTML = value + '%';
-});
-~~~
-
-Set default value on initiation:
-
-~~~ .javascript
-RS(document.getElementById('range-slider-1'), {
-    value: 10, // 10% of total width
-    drag: function(value) {
-        document.getElementById('result-area').innerHTML = value + '%';
-    }
-});
-~~~
-
-Creating custom `min` and `max` value in range slider as pixels:
-
-~~~ .javascript
-var min = 2,
-    max = 40;
-
-function pixelToPercent(pixel) {
-    return ((pixel - min) / (max - min)) * 100;
-}
-
-function percentToPixel(percent) {
-    return ((percent / 100) * (max - min)) + min;
-}
-
-RS(document.getElementById('range-slider-1'), {
-    value: pixelToPercent(10),
-    drag: function(value) {
-        document.getElementById('result-area').innerHTML = Math.round(percentToPixel(value));
-    }
-});
-~~~
+ - [No Idea?](https://rawgit.com/tovic/range-slider/master/range-slider.noob.html)
+ - [Custom Classes](https://rawgit.com/tovic/range-slider/master/range-slider.custom.html)
+ - [Fallback to HTML5 `<input type="range">` if JavaScript is Disabled](https://rawgit.com/tovic/range-slider/master/range-slider.replace.html)
+ - [Custom `min` and `max` Value in Range Slider as Pixel](https://rawgit.com/tovic/range-slider/master/range-slider.custom-range.html)
+ - [Tooltip](https://rawgit.com/tovic/range-slider/master/range-slider.tip.html)
 
 Folks
 -----
 
-> **Update 2016/07/21: Is now has support for touch/mobile devices by default.
+> **Update 2016/07/21:** Is now support touch/mobile devices by default.
 
  - Added support for touch/mobile devices by @beard86 &rarr; [link](https://github.com/beard86/simple-custom-range-slider)

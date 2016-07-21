@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Range Slider</title>
+    <link href="range-slider.min.css" rel="stylesheet">
+  </head>
+  <body>
+      <p>Min: 2, Max: 40, Initial: 10</p>
+    <p></p>
+    <p></p>
+    <script src="range-slider.min.js"></script>
+    <script>
+    // creating `min` and `max` value in range slider
+    var min = 2, max = 40,
+        p = document.getElementsByTagName('p');
+    function pixelToPercent(pixel) {
+        return ((pixel - min) / (max - min)) * 100;
+    }
+    function percentToPixel(percent) {
+        return ((percent / 100) * (max - min)) + min;
+    }
+    RS(p[1], {
+        value: pixelToPercent(10),
+        drag: function(value) {
+            p[2].innerHTML = '<strong>' + Math.round(percentToPixel(value)) + '</strong>';
+        }
+    });
+    </script>
+  </body>
+</html>

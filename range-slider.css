@@ -1,4 +1,4 @@
-.range-slider {margin:0 auto 1em}
+.range-slider {margin:0 5px 10px}
 .range-slider-track {
   width:auto;
   height:20px;
@@ -29,7 +29,7 @@
 .range-slider-vertical {
   display:inline-block;
   vertical-align:middle;
-  margin:0 1em 1em 0;
+  margin:5px 10px 5px 0;
 }
 .range-slider-vertical .range-slider-track {
   cursor:n-resize;
