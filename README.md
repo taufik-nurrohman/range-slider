@@ -3,7 +3,7 @@ Simple Custom Range Slider
 
 > The simplest JavaScript custom range slider ever!
 
-[View Demo](https://rawgit.com/tovic/range-slider/master/range-slider.html)
+[![View Demo](https://cloud.githubusercontent.com/assets/1669261/17064930/5fd9e440-5069-11e6-9f61-071b0be5bd56.png)](https://rawgit.com/tovic/range-slider/master/range-slider.html "View Demo")
 
 Basic Usage
 -----------
@@ -55,6 +55,6 @@ Examples
 Folks
 -----
 
-> **Update 2016/07/21:** Is now support touch/mobile devices by default.
+> **Update 2016/07/21:** Is now has support for touch devices by default.
 
- - Added support for touch/mobile devices by @beard86 &rarr; [link](https://github.com/beard86/simple-custom-range-slider)
+ - Added support for touch devices by @beard86 → [link](https://github.com/beard86/simple-custom-range-slider)
