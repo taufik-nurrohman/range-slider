@@ -1,65 +1,47 @@
 /*!
- *
- * ================================================================================
- *  THE SIMPLEST JAVASCRIPT CUSTOM RANGE SLIDER
- *  Author: Taufik Nurrohman <https://github.com/tovic>
- * ================================================================================
- *
- * Copyright © 2016 Taufik Nurrohman
- * ---------------------------------
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is furnished
- * to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- *
+ * ==========================================================
+ *  RANGE SLIDER 2.0.0
+ * ==========================================================
+ * Author: Taufik Nurrohman <http://latitudu.com>
+ * License: MIT
+ * ----------------------------------------------------------
  */
 
-// `RS(target, {})`
 function RS(target, event, vertical) {
 
     event = event || {};
 
     var win = window,
         doc = document,
-        range = doc.createElement('div'),
+        ranger = doc.createElement('div'),
         dragger = doc.createElement('span'),
         drag = false,
-        rangeSize = 0,
+        rangerSize = 0,
         draggerSize = 0,
-        rangeDistance = 0,
+        rangerDistance = 0,
         cacheValue = 0,
         vertical = vertical || event.vertical || false,
-        dir = vertical ? 'top' : 'left';
+        size = vertical ? 'offsetHeight' : 'offsetWidth',
+        css = vertical ? 'top' : 'left',
+        page = vertical ? 'pageY' : 'pageX',
+        offset = vertical ? 'offsetTop' : 'offsetLeft',
+        client = vertical ? 'clientY' : 'clientX',
+        scroll = vertical ? 'scrollTop' : 'scrollLeft';
 
     function isSet(x) {
         return typeof x !== "undefined";
     }
 
-    function isFunction(x) {
+    function isFunc(x) {
         return typeof x === "function";
     }
 
-    function coord(el) {
-        var distance = el[vertical ? 'offsetTop' : 'offsetLeft'];
-        if (el.offsetParent) {
-            while(el = el.offsetParent) {
-                distance += el[vertical ? 'offsetTop' : 'offsetLeft'];
-            }
+    function getCoordinate(el) {
+        var x = el[offset];
+        while (el = el.offsetParent) {
+            x += el[offset];
         }
-        return distance;
+        return x;
     }
 
     function on(ev, el, fn) {
@@ -73,9 +55,9 @@ function RS(target, event, vertical) {
     }
 
     function off(ev, el, fn) {
-        if (el.addEventListener) {
+        if (el.removeEventListener) {
             el.removeEventListener(ev, fn);
-        } else if (el.attachEvent) {
+        } else if (el.detachEvent) {
             el.detachEvent('on' + ev, fn);
         } else {
             el['on' + ev] = null;
@@ -92,11 +74,11 @@ function RS(target, event, vertical) {
 
     addClass('range-slider', target);
     addClass('range-slider-' + (vertical ? 'vertical' : 'horizontal'), target);
-    addClass('range-slider-track', range);
+    addClass('range-slider-track', ranger);
     addClass('dragger', dragger);
 
-    // `RS(target, function(a, b) {})`
-    if (isFunction(event)) {
+    // `RS(target, function(a, b, c) {})`
+    if (isFunc(event)) {
         event = {
             drag: event
         };
@@ -117,29 +99,28 @@ function RS(target, event, vertical) {
     }
 
     function setSize() {
-        rangeSize = range[vertical ? 'offsetHeight' : 'offsetWidth'];
-        rangeDistance = coord(range);
-        draggerSize = dragger[vertical ? 'offsetHeight' : 'offsetWidth'];
+        rangerSize = ranger[size];
+        rangerDistance = getCoordinate(ranger);
+        draggerSize = dragger[size];
     }
 
     function dragInit() {
         cacheValue = edge(isSet(event.value) ? event.value : 0, 0, 100);
-        dragger.style[dir] = (((cacheValue / 100) * rangeSize) - (draggerSize / 2)) + 'px';
-        if (isFunction(event.create)) event.create(cacheValue, target);
-        if (isFunction(event.drag)) event.drag(cacheValue, target);
+        dragger.style[css] = (((cacheValue / 100) * rangerSize) - (draggerSize / 2)) + 'px';
+        if (isFunc(event.create)) event.create(cacheValue, target);
+        if (isFunc(event.drag)) event.drag(cacheValue, target);
     }
 
     function dragStart(e) {
         setSize(), drag = true, dragUpdate(e);
         on("touchmove", doc, dragMove);
         on("mousemove", doc, dragMove);
-        if (isFunction(event.start)) event.start(cacheValue, target, e);
+        if (isFunc(event.start)) event.start(cacheValue, target, e);
         return preventDefault(e);
     }
 
     function dragMove(e) {
         dragUpdate(e);
-        if (isFunction(event.drag)) event.drag(cacheValue, target, e);
         return preventDefault(e);
     }
 
@@ -147,37 +128,36 @@ function RS(target, event, vertical) {
         drag = false;
         off("touchmove", doc, dragMove);
         off("mousemove", doc, dragMove);
-        if (isFunction(event.stop)) event.stop(cacheValue, target, e);
+        if (isFunc(event.stop)) event.stop(cacheValue, target, e);
         return preventDefault(e);
     }
 
     function dragUpdate(e) {
         e = e || win.event;
-        var pos = e.touches ? e.touches[0][vertical ? 'pageY' : 'pageX'] : e[vertical ? 'pageY' : 'pageX'],
-            move = edge(pos - rangeDistance, 0, rangeSize),
-            value = edge(((pos - rangeDistance) / rangeSize) * 100, 0, 100);
-        if (!pos) {
-            pos = e[vertical ? 'clientY' : 'clientX'] + doc.body[vertical ? 'scrollTop' : 'scrollLeft'] + doc.documentElement[vertical ? 'scrollTop' : 'scrollLeft'];
-        }
+        var pos = e.touches ? e.touches[0][page] : e[page],
+            move = edge(pos - rangerDistance, 0, rangerSize),
+            value = edge(((pos - rangerDistance) / rangerSize) * 100, 0, 100);
+        if (!pos) pos = e[client] + doc.body[scroll] + doc.documentElement[scroll];
         if (drag) {
-            dragger.style[dir] = (move - (draggerSize / 2)) + 'px';
+            dragger.style[css] = (move - (draggerSize / 2)) + 'px';
             cacheValue = Math.round(value);
+            if (isFunc(event.drag)) event.drag(cacheValue, target, e);
         }
     }
 
-    on("touchstart", range, dragStart);
-    on("mousedown", range, dragStart);
+    on("touchstart", ranger, dragStart);
+    on("mousedown", ranger, dragStart);
 
     on("touchend", doc, dragStop);
     on("mouseup", doc, dragStop);
 
     on("resize", win, function(e) {
         setSize(), drag = false;
-        dragger.style[dir] = (((cacheValue / 100) * rangeSize) - (draggerSize / 2)) + 'px';
+        dragger.style[css] = (((cacheValue / 100) * rangerSize) - (draggerSize / 2)) + 'px';
     });
 
-    range.appendChild(dragger);
-    target.insertBefore(range, target.firstChild || null);
+    ranger.appendChild(dragger);
+    target.appendChild(ranger);
 
     setSize(), dragInit();
 

@@ -13,7 +13,6 @@
     .range-slider .dragger span {
       position:absolute;
       top:100%;
-      right:0;
       left:50%;
       width:3em;
       height:2em;
@@ -36,26 +35,61 @@
       left:50%;
       margin-left:-.25em;
     }
+    .range-slider-vertical .dragger span {
+      top:50%;
+      left:100%;
+      margin:-1em 0 0 .5em;
+    }
+    .range-slider-vertical .dragger span:before {
+      border-color:transparent;
+      border-right-color:inherit;
+      top:50%;
+      right:100%;
+      bottom:auto;
+      left:auto;
+      margin-top:-.25em;
+      margin-left:0;
+    }
     </style>
   </head>
   <body>
     <p></p>
+    <br>
+    <br>
+    <br>
+    <p></p>
     <script src="range-slider.min.js"></script>
     <script>
     var p = document.getElementsByTagName('p'),
-        tip = document.createElement('span');
+        tip_H = document.createElement('span'),
+        tip_V = document.createElement('span');
     RS(p[0], {
         create: function(value, target) {
-            target.firstChild.firstChild.appendChild(tip); // append tooltip to the trigger element
+            target.firstChild.firstChild.appendChild(tip_H); // append tooltip to the trigger element
         },
         start: function() {
-            tip.style.display = 'block';
+            tip_H.style.display = 'block';
         },
         drag: function(value, target) {
-            tip.innerHTML = value + '%';
+            tip_H.innerHTML = value + '%';
         },
         stop: function() {
-            tip.style.display = 'none';
+            tip_H.style.display = 'none';
+        }
+    });
+    RS(p[1], {
+        vertical: true,
+        create: function(value, target) {
+            target.firstChild.firstChild.appendChild(tip_V); // append tooltip to the trigger element
+        },
+        start: function() {
+            tip_V.style.display = 'block';
+        },
+        drag: function(value, target) {
+            tip_V.innerHTML = value + '%';
+        },
+        stop: function() {
+            tip_V.style.display = 'none';
         }
     });
     </script>
