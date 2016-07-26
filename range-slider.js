@@ -85,11 +85,8 @@ function RS(target, event, vertical) {
     }
 
     function edge(a, b, c) {
-        if (a < b) {
-            a = b;
-        } else if (a > c) {
-            a = c;
-        }
+        if (a < b) return b;
+        if (a > c) return c;
         return a;
     }
 
