@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Range Slider</title>
+    <link href="range-slider.min.css" rel="stylesheet">
+    <style>
+    .range-slider:after {
+      content:" ";
+      display:table;
+      clear:both;
+    }
+    .range-slider-track {
+      width:50%;
+      float:left;
+    }
+    .range-slider-track + .range-slider-track {float:right}
+    .range-slider-track:before,
+    .range-slider-track .dragger {background-color:red}
+    .range-slider-track + .range-slider-track:before,
+    .range-slider-track + .range-slider-track .dragger {background-color:green}
+    </style>
+  </head>
+  <body>
+    <!-- still hacky IMO :( -->
+    <p></p>
+    <p>From <span>0</span> to <span>0</span></p>
+    <script src="range-slider.min.js"></script>
+    <script>
+    var p = document.getElementsByTagName('p');
+    RS(p[0], {
+        value: 100,
+        drag: function(value) {
+            p[1].children[0].innerHTML = Math.round(value / 2);
+        }
+    });
+    RS(p[0], {
+        value: 0,
+        drag: function(value) {
+            p[1].children[1].innerHTML = Math.round((value / 2) + 50);
+        }
+    });
+    </script>
+  </body>
+</html>

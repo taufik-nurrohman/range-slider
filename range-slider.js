@@ -1,6 +1,6 @@
 /*!
  * ==========================================================
- *  RANGE SLIDER 2.0.0
+ *  RANGE SLIDER 2.0.1
  * ==========================================================
  * Author: Taufik Nurrohman <http://latitudu.com>
  * License: MIT
@@ -156,6 +156,6 @@ function RS(target, event, vertical) {
     ranger.appendChild(dragger);
     target.appendChild(ranger);
 
-    setSize(), dragInit();
+    return setSize(), dragInit(), target;
 
 }
