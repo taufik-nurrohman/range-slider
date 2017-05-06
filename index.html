@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Range Slider</title>
+    <link href="range-slider.min.css" rel="stylesheet">
+    <style>
+    * {
+      margin:0;
+      padding:0;
+    }
+    body {
+      background-color:white;
+      font:normal normal 13px/1.4 Helmet,Freesans,Sans-Serif;
+      color:black;
+      padding:50px 100px 50px 50px;
+    }
+    h3 {
+      font:inherit;
+      font-weight:bold;
+      margin:3em 0 1em;
+    }
+    .test-result {
+      position:absolute;
+      top:10px;
+      right:10px;
+      z-index:999;
+      overflow:hidden;
+    }
+    .test-result span {
+      display:block;
+      float:right;
+      clear:right;
+      background-color:yellow;
+      border:1px solid;
+      margin:0 0 2px;
+      padding:1em;
+      line-height:1;
+    }
+    </style>
+  </head>
+  <body>
+
+    <div class="test-result" id="test-result">
+      <span>0%</span>
+      <span>0%</span>
+    </div>
+
+    <h3>Horizontal Slider</h3>
+    <div id="range-slider-1"></div>
+
+    <h3>Vertical Slider</h3>
+    <div id="range-slider-2"></div>
+
+    <script src="range-slider.min.js"></script>
+    <script>
+
+    var testResult = document.getElementById('test-result').children;
+
+    // horizontal range slider
+    RS(document.getElementById('range-slider-1'), function(v) {
+        testResult[0].innerHTML = v + '%';
+    });
+
+    // vertical range slider
+    RS(document.getElementById('range-slider-2'), {
+        value: 20, // initial value
+        vertical: true,
+        drag: function(v) {
+            testResult[1].innerHTML = v + '%';
+        }
+    });
+
+    </script>
+
+  </body>
+</html>
