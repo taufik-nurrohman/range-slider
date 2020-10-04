@@ -3,7 +3,7 @@ Simple Custom Range Slider
 
 > The simplest JavaScript custom range slider ever!
 
-[![View Demo](https://cloud.githubusercontent.com/assets/1669261/17064930/5fd9e440-5069-11e6-9f61-071b0be5bd56.png)](https://rawgit.com/tovic/range-slider/master/range-slider.html "View Demo")
+[![View Demo](https://cloud.githubusercontent.com/assets/1669261/17064930/5fd9e440-5069-11e6-9f61-071b0be5bd56.png)](https://taufik-nurrohman.github.io/range-slider/range-slider.html "View Demo")
 
 Basic Usage
 -----------
@@ -18,7 +18,7 @@ Execution…
 
 ### Basic
 
-~~~ .javascript
+~~~ .js
 // horizontal slider
 RS(document.getElementById('range-slider-1'), function(value, target, event) {
     console.log(value);
@@ -32,7 +32,7 @@ RS(document.getElementById('range-slider-1'), function(value, target, event) {
 
 ### Advance
 
-~~~ .javascript
+~~~ .js
 RS(document.getElementById('range-slider-1'), {
     value: 1, // initial value
     vertical: false, // vertical or horizontal slider?
@@ -46,11 +46,11 @@ RS(document.getElementById('range-slider-1'), {
 Examples
 --------
 
- - [No Idea?](https://rawgit.com/tovic/range-slider/master/range-slider.noob.html)
- - [Custom Classes](https://rawgit.com/tovic/range-slider/master/range-slider.custom.html)
- - [Fallback to HTML5 `<input type="range">` if JavaScript is Disabled](https://rawgit.com/tovic/range-slider/master/range-slider.replace.html)
- - [Custom `min` and `max` Value in Range Slider as Pixel](https://rawgit.com/tovic/range-slider/master/range-slider.custom-range.html)
- - [Tooltip](https://rawgit.com/tovic/range-slider/master/range-slider.tip.html)
+ - [No Idea?](https://taufik-nurrohman.github.io/range-slider/range-slider.noob.html)
+ - [Custom Classes](https://taufik-nurrohman.github.io/range-slider/range-slider.custom.html)
+ - [Fallback to HTML5 `<input type="range">` if JavaScript is Disabled](https://taufik-nurrohman.github.io/range-slider/range-slider.replace.html)
+ - [Custom `min` and `max` Value in Range Slider as Pixel](https://taufik-nurrohman.github.io/range-slider/range-slider.custom-range.html)
+ - [Tooltip](https://taufik-nurrohman.github.io/range-slider/range-slider.tip.html)
 
 Folks
 -----
